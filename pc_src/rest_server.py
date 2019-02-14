@@ -1,6 +1,7 @@
-from flask import Flask, jsonify, render_template, url_for, request
+from flask import Flask, jsonify, render_template, url_for, request, redirect
 from flask_googlecharts import GoogleCharts, MaterialLineChart
 import json
+import time
 
 app = Flask(__name__)
 charts = GoogleCharts(app)
@@ -24,11 +25,15 @@ def index():
 @app.route('/servo', methods=['POST'])
 def servo():
     if not request.json:
-        print('Error')
-    with open('pozycja_zadana.json', 'w') as f:
-        json.dump(request.json, f)
-    return json.dumps(request.json)
-
+        poz = request.form['pozycja']
+        data = {"pozycja": poz}
+        with open('pozycja_zadana.json', 'w') as f:
+            json.dump(data, f)
+    else:
+        with open('pozycja_zadana.json', 'w') as f:
+            json.dump(request.json, f)
+    time.sleep(0.5)
+    return redirect(url_for('index'))
 
 @app.route('/pozycja_zadana', methods=['GET'])
 def pozycja_zadana():

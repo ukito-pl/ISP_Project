@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,5 +10,10 @@
 <body>
 <h2>Servo position</h2>
 {{ charts.wykres}}
+    <form action="/servo">
+        Requested postion:
+        <input type="number" name="pozycja" min="0" max="180" step="1" ><br>
+        <input type="submit" formmethod="post" value="Submit">
+    </form>
 </body>
 </html>

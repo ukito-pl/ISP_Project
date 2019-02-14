@@ -21,7 +21,7 @@ def post_position(data):
 def main():
 	
 
-	TCP_IP = '192.168.0.101'
+	TCP_IP = '192.168.0.102'
 	TCP_PORT = 5005
 	BUFFER_SIZE = 20 
 
